@@ -3,6 +3,7 @@ package hu.exth.l4tgt.model.config;
 import hu.exth.l4tgt.model.Dialog.interfaces.CharacterDialogHandler;
 import hu.exth.l4tgt.model.MapObjects.MapObjectHandler;
 import hu.exth.l4tgt.model.Textures.TextureHandler;
+import hu.exth.l4tgt.model.Trigger.TriggerHandler;
 
 /**
  * Manages all I/O handlers
@@ -13,6 +14,7 @@ public abstract class ConfigurationHandler {
     private CharacterDialogHandler dialogHandler;
     private MapObjectHandler mapObjectHandler;
     private TextureHandler textureHandler;
+    private TriggerHandler triggerHandler;
 
 
 
@@ -47,5 +49,13 @@ public abstract class ConfigurationHandler {
 
     public void setTextureHandler(TextureHandler textureHandler) {
         this.textureHandler = textureHandler;
+    }
+
+    public TriggerHandler getTriggerHandler() {
+        return triggerHandler;
+    }
+
+    public void setTriggerHandler(TriggerHandler triggerHandler) {
+        this.triggerHandler = triggerHandler;
     }
 }
