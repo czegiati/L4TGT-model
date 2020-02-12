@@ -6,13 +6,21 @@
 
     <groupId>hu.exth.l4tgt.model</groupId>
     <artifactId>L4TGT-MODEL</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 
     <packaging>jar</packaging>
 
     <name>L4TGT Model</name>
     <description>Model for my ex thesis project (TGT).</description>
 
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub czegiati Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/czegiati/L4TGT-model</url>
+        </repository>
+    </distributionManagement>
 
     <developers>
         <developer>
