@@ -1,4 +1,7 @@
 package hu.exth.l4tgt.model.Map;
+import hu.exth.l4tgt.model.Map.Direction.MovementDirection;
+import hu.exth.l4tgt.model.Map.Direction.MovementType;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,8 +63,13 @@ public class Map {
 	public boolean TextureisNotNull(int x, int y,MapTileTextureType a) {
 		return this.Map.get(x+y*this.width).getTextures().get(a) !=null;
 	}
-		
-}
+
+	public boolean canMoveTo(int fromX, int fromY, MovementDirection direction) {
+		return (this.get(fromX, fromY).getMovements().get(direction) != MovementType.None) ? true : false;
+	}
+
+
+	}
 
 
 

@@ -6,9 +6,12 @@ import hu.exth.l4tgt.model.Map.Direction.MovementDirection;
 public abstract class MapObject {
 
     protected int id;
-    protected boolean isMoving;
     protected int x;
     protected int y;
+    protected int destinationX;
+    protected int destinationY;
+    protected volatile double movementIndicator=0.0;
+    protected String mapName;
 
     protected int standUpTextureId;
     protected int standDownTextureId;
@@ -20,11 +23,9 @@ public abstract class MapObject {
     protected int movingRightId;
     protected int movingLeftId;
     
-    
-    
-    
     protected int currentStandingId;
     protected int currentMovingId;
+
 
     public abstract void afterMoving();
 
@@ -63,9 +64,44 @@ public abstract class MapObject {
             return MovementDirection.Right;
     }
 
-    public abstract void moveToDirection(Map map, MovementDirection direction);
-    
-    
+    public void moveToDirection(Map map, MovementDirection direction){
+        if(setDestinationCoordinatesWithDirection(map,direction)){
+           MovementThread t= new MovementThread(this,30);
+           t.start();
+        }
+    }
+
+
+    public boolean setDestinationCoordinatesWithDirection(Map map,MovementDirection direction){
+        switch(direction){
+            case Up:
+                if(y-1>=0 && map.canMoveTo(this.x,this.y,direction)){
+                    this.setDestinationY(this.getY()-1);
+                    return true;
+                }
+                break;
+            case Down:
+                if(y+1<=map.getHeight()-1  && map.canMoveTo(this.x,this.y,direction)){
+                    this.setDestinationY(this.getY()+1);
+                    return true;
+                }
+                break;
+            case Left:
+                if(x-1>=0 && map.canMoveTo(this.x,this.y,direction)){
+                    this.setDestinationX(this.getX()-1);
+                    return true;
+                }
+                break;
+            case Right:
+                if(x+1<=map.getWidth()-1  && map.canMoveTo(this.x,this.y,direction)){
+                    this.setDestinationX(this.getX()+1);
+                    return true;
+                }
+                break;
+        }
+        return false;
+    }
+
     
     public int getStandUpTextureId() {
         return standUpTextureId;
@@ -155,11 +191,47 @@ public abstract class MapObject {
         this.id = id;
     }
 
-    public boolean isMoving() {
-        return isMoving;
+    public int getX() {
+        return x;
     }
 
-    public void setMoving(boolean moving) {
-        isMoving = moving;
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getDestinationX() {
+        return destinationX;
+    }
+
+    public void setDestinationX(int destinationX) {
+        this.destinationX = destinationX;
+    }
+
+    public int getDestinationY() {
+        return destinationY;
+    }
+
+    public void setDestinationY(int destinationY) {
+        this.destinationY = destinationY;
+    }
+
+    public double getMovementIndicator() {
+        return movementIndicator;
+    }
+
+    public String getMapName() {
+        return mapName;
+    }
+
+    public void setMapName(String mapName) {
+        this.mapName = mapName;
     }
 }
