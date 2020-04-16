@@ -16,7 +16,9 @@ public interface TriggerHandler {
     Class getTriggerElementClassByName(String name);
 
     /**
-     * For setting values in triggerSubElements
+     * For setting values in triggerSubElements.
+     * It receives a string hat contains trigger subelement variable names and values, like: name1:value1;name2:value2
+     *  and sets the TriggerSubElements' corresponding fields.
      * @param element the initialized element, that we want to set value for
      * @param values the String that contains the names of the variables and their values
      */
