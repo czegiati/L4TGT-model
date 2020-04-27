@@ -12,3 +12,6 @@ This module is created to be used as a foundation for later projects using simul
 <li>the characters can interract with eachother through the dialog graphs</li>
 <li>there are triggers that can be activated, these should be accessed from an external jar file</li>
 </ul>
+
+
+The end folks.....
